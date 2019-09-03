@@ -1,10 +1,12 @@
-## Select one of these
+## Set Mcu Type
 DEVICE=stm8s103f3
+DEFINES=STM8S103
+
+# apps in used
+APPS = gpio uart1 clk
 
 ## A directory for common include files
 COMMONDIR = bsp
-
-APPS = gpio uart1 clk
 
 ## Get program name from enclosing directory name
 PROGRAM = $(lastword $(subst /, ,$(CURDIR)))
@@ -19,18 +21,8 @@ PROGRAMMER = stlinkv2
 FLASHER = /Developer/sdcc/bin/stm8flash
 FACTORYOPT = /Developer/sdcc/stm8s103_opt_factory_defaults.bin
 
-
-DEFINES=
-## Set MCU-type DEFINE
-ifeq ($(DEVICE),stm8s003f3)
-    DEFINES += -DSTM8S003
-endif
-ifeq ($(DEVICE),stm8s103f3)
-    DEFINES += -DSTM8S103
-endif
-
 CPPFLAGS = -I$(COMMONDIR)/inc -I.
-CFLAGS = --Werror --std-sdcc99 -mstm8 $(DEFINES)
+CFLAGS = --Werror --std-sdcc99 -mstm8 -D$(DEFINES)
 LDFLAGS = -lstm8 -mstm8 --out-fmt-ihx
 
 .PHONY: all clean flash factory
