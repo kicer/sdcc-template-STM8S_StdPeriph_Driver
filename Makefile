@@ -4,11 +4,14 @@ DEVICE=stm8s103f3
 ## A directory for common include files
 COMMONDIR = bsp
 
+APPS = gpio uart1 clk
+
 ## Get program name from enclosing directory name
 PROGRAM = $(lastword $(subst /, ,$(CURDIR)))
 
-SOURCES=$(wildcard *.c $(COMMONDIR)/src/*.c)
+SOURCES=$(wildcard *.c $(addprefix $(COMMONDIR)/src/stm8s_,$(addsuffix .c,$(APPS))))
 OBJECTS=$(SOURCES:.c=.rel)
+
 HEADERS=$(wildcard *.h $(COMMONDIR)/inc/*.h)
 
 CC = /Developer/sdcc/bin/sdcc
