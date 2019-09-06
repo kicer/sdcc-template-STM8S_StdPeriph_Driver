@@ -1,9 +1,5 @@
-*.lst
 *.asm
+*.lst
 *.rel
 *.rst
 *.sym
-*.cdb
-*.ihx
-*.lk
-*.map
