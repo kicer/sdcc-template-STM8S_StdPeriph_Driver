@@ -18,17 +18,18 @@ PROGRAMMER = stlinkv2
 FLASHER = /Developer/sdcc/bin/stm8flash
 FACTORYOPT = /Developer/sdcc/stm8s103_opt_factory_defaults.bin
 MKLIB = scripts/compile-s.sh
+CPULIB = $(BSP)/lib/$(CPU).lib
 
 CPPFLAGS = -I$(BSP)/inc -Isrc/inc
 CFLAGS = --Werror --std-sdcc99 -mstm8 -D$(CPU)
-LDFLAGS = -lstm8 -mstm8 --out-fmt-ihx -L$(BSP)/lib -l${CPU}
+LDFLAGS = -lstm8 -mstm8 --out-fmt-ihx
 
 .PHONY: all clean flash factory
 
-$(PROGRAM).ihx: $(OBJECTS)
+$(PROGRAM).ihx: $(OBJECTS) $(CPULIB)
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
 
-$(CPU).lib:
+$(CPULIB):
 	$(MKLIB) $(CPU)
 
 %.rel : %.c $(HEADERS)
