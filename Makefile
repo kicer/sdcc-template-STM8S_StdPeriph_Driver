@@ -16,7 +16,7 @@ HEADERS=$(wildcard src/inc/*.h $(BSP)/inc/*.h)
 CC = /Developer/sdcc/bin/sdcc
 PROGRAMMER = stlinkv2
 FLASHER = /Developer/sdcc/bin/stm8flash
-FACTORYOPT = /Developer/sdcc/stm8s103_opt_factory_defaults.bin
+FACTORYOPT = /Developer/sdcc/$(DEVICE)_opt_factory_defaults.bin
 MKLIB = scripts/compile-s.sh
 CPULIB = $(BSP)/lib/$(CPU).lib
 
@@ -45,3 +45,6 @@ flash: $(PROGRAM).ihx
 
 factory: $(FACTORYOPT)
 	$(FLASHER) -c $(PROGRAMMER) -p $(DEVICE) -s opt -w $(FACTORYOPT)
+
+erase:
+	$(FLASHER) -c $(PROGRAMMER) -p $(DEVICE) -u
