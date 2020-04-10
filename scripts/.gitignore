@@ -1,3 +1,4 @@
 *
 !.gitignore
 !compile-s.sh
+!*.bin

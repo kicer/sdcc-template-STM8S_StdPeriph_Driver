@@ -58,14 +58,23 @@
  #define FLASH_BLOCK_SIZE                  ((uint8_t)128)       /*!< Number of bytes in a block (common for Program and Data memories) */
 #endif /* STM8S105 or STM8AF626x */
 
-#if defined(STM8S103) || defined(STM8S003) || defined(STM8S001) || defined(STM8S903) || defined(STM8AF622x)
+#if defined(STM8S103) || defined(STM8S903) || defined(STM8AF622x)
  #define FLASH_PROG_END_PHYSICAL_ADDRESS   ((uint32_t)0x9FFF)   /*!< Program memory: end address */
  #define FLASH_PROG_BLOCKS_NUMBER          ((uint16_t)128)      /*!< Program memory: total number of blocks */
  #define FLASH_DATA_START_PHYSICAL_ADDRESS ((uint32_t)0x004000) /*!< Data EEPROM memory: start address */
  #define FLASH_DATA_END_PHYSICAL_ADDRESS   ((uint32_t)0x00427F) /*!< Data EEPROM memory: end address */
- #define FLASH_DATA_BLOCKS_NUMBER          ((uint16_t)10)       /*!< Data EEPROM memory: total number of blocks */
+ #define FLASH_DATA_BLOCKS_NUMBER          ((uint16_t)10)        /*!< Data EEPROM memory: total number of blocks */
  #define FLASH_BLOCK_SIZE                  ((uint8_t)64)        /*!< Number of bytes in a block (common for Program and Data memories) */
-#endif /* STM8S103 or STM8S003 or STM8S001 or STM8S903 or STM8AF622x*/
+#endif /* STM8S103 or STM8S903 or STM8AF622x*/
+
+#if defined(STM8S001) || defined(STM8S003)
+ #define FLASH_PROG_END_PHYSICAL_ADDRESS   ((uint32_t)0x9FFF)   /*!< Program memory: end address */
+ #define FLASH_PROG_BLOCKS_NUMBER          ((uint16_t)128)      /*!< Program memory: total number of blocks */
+ #define FLASH_DATA_START_PHYSICAL_ADDRESS ((uint32_t)0x004000) /*!< Data EEPROM memory: start address */
+ #define FLASH_DATA_END_PHYSICAL_ADDRESS   ((uint32_t)0x00407F) /*!< Data EEPROM memory: end address */
+ #define FLASH_DATA_BLOCKS_NUMBER          ((uint16_t)2)        /*!< Data EEPROM memory: total number of blocks */
+ #define FLASH_BLOCK_SIZE                  ((uint8_t)64)        /*!< Number of bytes in a block (common for Program and Data memories) */
+#endif /* STM8S001 or STM8S003 */
 
 #define FLASH_RASS_KEY1 ((uint8_t)0x56) /*!< First RASS key */
 #define FLASH_RASS_KEY2 ((uint8_t)0xAE) /*!< Second RASS key */

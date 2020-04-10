@@ -1,6 +1,6 @@
 ## Set Mcu Type
-DEVICE=stm8s103f3
-CPU=STM8S103
+DEVICE=stm8s003f3
+CPU=STM8S003
 
 ## A directory for common include files
 BSP = bsp
@@ -16,7 +16,7 @@ HEADERS=$(wildcard src/inc/*.h $(BSP)/inc/*.h)
 CC = /Developer/sdcc/bin/sdcc
 PROGRAMMER = stlinkv2
 FLASHER = /Developer/sdcc/bin/stm8flash
-FACTORYOPT = /Developer/sdcc/$(DEVICE)_opt_factory_defaults.bin
+FACTORYOPT = scripts/stm8s_opt_factory_defaults.bin
 MKLIB = scripts/compile-s.sh
 CPULIB = $(BSP)/lib/$(CPU).lib
 
@@ -46,5 +46,5 @@ flash: $(PROGRAM).ihx
 factory: $(FACTORYOPT)
 	$(FLASHER) -c $(PROGRAMMER) -p $(DEVICE) -s opt -w $(FACTORYOPT)
 
-erase:
+unlock:
 	$(FLASHER) -c $(PROGRAMMER) -p $(DEVICE) -u
